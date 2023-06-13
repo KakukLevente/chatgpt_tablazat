@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adatbekérés és megjelenítés</title>
+  <script>
+    function megjelenit() {
+      let nevek = [];
+      let eletkorok = [];
+      let lakhelyek = [];
+
+      // Adatok bekérése
+      for (let i = 0; i < 5; i++) {
+        let nev = document.getElementById("nev" + i).value;
+        nevek.push(nev);
+
+        let eletkor = parseInt(document.getElementById("eletkor" + i).value);
+        eletkorok.push(eletkor);
+
+        let lakhely = document.getElementById("lakhely" + i).value;
+        lakhelyek.push(lakhely);
+      }
+
+      // Adatok kiírása
+      let adatokDiv = document.getElementById("adatok");
+      adatokDiv.innerHTML = "<h2>Felhasználók adatai:</h2>";
+      for (let i = 0; i < 5; i++) {
+        let adatDiv = document.createElement("div");
+        adatDiv.innerHTML = "<h3>Személy " + (i + 1) + ":</h3>" +
+          "<p>Név: " + nevek[i] + "</p>" +
+          "<p>Életkor: " + eletkorok[i] + "</p>" +
+          "<p>Lakhely: " + lakhelyek[i] + "</p>";
+        adatokDiv.appendChild(adatDiv);
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Adatbekérés és megjelenítés</h1>
+  <form>
+    <h2>Adatbekérés</h2>
+    <fieldset>
+      <legend>Személy 1</legend>
+      <label for="nev0">Név:</label>
+      <input type="text" id="nev0" required><br>
+      <label for="eletkor0">Életkor:</label>
+      <input type="number" id="eletkor0" required><br>
+      <label for="lakhely0">Lakhely:</label>
+      <input type="text" id="lakhely0" required><br>
+    </fieldset>
+    <!-- Újabb személyek űrlapja -->
+    <!-- Az id-k egyedi kell, hogy legyenek (pl. nev1, eletkor1, lakhely1) -->
+    <!-- Az "onsubmit" eseményhívás hatására meghívódik a JavaScript függvény -->
+    <button type="submit" onclick="megjelenit()">Adatok megjelenítése</button>
+  </form>
+  <div id="adatok"></div>
+</body>
+</html>
